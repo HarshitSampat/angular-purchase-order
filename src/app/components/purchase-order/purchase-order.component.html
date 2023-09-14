@@ -1,0 +1,162 @@
+<div class="container">
+    <h2 class="text-center">Purchase Order</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        
+        <table class="table table-bordered">
+            <tbody>
+              <tr *ngIf="poOrderDetails">
+                <th>Date:</th>
+                <td>{{ poOrderDetails.Date }}</td>
+              </tr>
+              <tr *ngIf="poOrderDetails">
+                <th>P.O. Number:</th>
+                <td>{{ poOrderDetails.PONumber }}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+    <!-- vendor Details -->
+    <div class="row">
+      <div class="col-md-6" *ngIf="poOrderDetails">
+        <h3>Vendor Details</h3>
+        <div>
+          <p> {{ poOrderDetails.Vendor.Name }}</p>
+          <p> {{ poOrderDetails.Vendor.Address.Line1 }}, {{ poOrderDetails.Vendor.Address.Line2 }}, {{ poOrderDetails.Vendor.Address.CityState }}</p>
+          <p>{{ poOrderDetails.Vendor.Contact.Name }}</p>
+          <p>{{ poOrderDetails.Vendor.Contact.Number }}</p>
+          <p>{{ poOrderDetails.Vendor.Contact.Email }}</p>
+          <p> {{ poOrderDetails.Vendor.Contact.Website }}</p>
+          <p> <strong>GSTNo</strong> : {{ poOrderDetails.Vendor.GSTNo }}</p>
+          <p> <strong>PANNo</strong> : {{ poOrderDetails.Vendor.PANNo }}</p>
+        </div>
+      </div>
+
+      
+    <!-- ShipTo details -->
+      <div class="col-md-6"  *ngIf="poOrderDetails">
+        <h3>ShipTo Details</h3>
+        <div>
+          <p>{{ poOrderDetails.ShipTo.Name }}</p>
+          <p>{{ poOrderDetails.ShipTo.Address.Line1 }}, {{ poOrderDetails.ShipTo.Address.Line2 }}, {{ poOrderDetails.ShipTo.Address.CityState }}</p>
+          <p>{{ poOrderDetails.ShipTo.Contact.Name }}</p>
+          <p> {{ poOrderDetails.ShipTo.Contact.Number }}</p>
+          <p> {{ poOrderDetails.ShipTo.Contact.Email }}</p>
+          <p>{{ poOrderDetails.ShipTo.Contact.Website }}</p>
+          <p><strong>GSTNo</strong> : {{ poOrderDetails.ShipTo.GSTNo }}</p>
+          <p> <strong>PANNo</strong> : {{ poOrderDetails.ShipTo.PANNo }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <table class="table table-bordered tableDataStyle">
+        <thead>
+          <tr>
+            <th>Delivery Method</th>
+            <th>Payment Terms</th>
+            <th>Delivery Date</th>
+            <th>Against Quote No</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="poOrderDetails">
+            <td>{{ poOrderDetails.DeliveryMethod }}</td>
+            <td>{{ poOrderDetails.PaymentTerms }}</td>
+            <td>{{ poOrderDetails.DeliveryDate }}</td>
+            <td>{{ poOrderDetails.AgainstQuoteNo }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <table class="table table-bordered">
+        <thead *ngIf="poOrderDetails">
+          <ng-container *ngFor="let item of itemKeys;">
+            <th class="table-data-style">{{item}}</th>
+          </ng-container>
+          <th class="table-data-style">Total</th>
+        </thead>
+        <tbody *ngIf="poOrderDetails">
+          <ng-container *ngFor="let item of poOrderDetails.Items.slice(0, 8); let i = index">
+            <tr>
+              <td class="table-data-style">{{ item.SrNo }}</td>
+              <td class="table-data-style">{{ item.ProductName }}</td>
+              <td class="table-data-style" ><div *ngIf="item.Quantity!== -1">{{ item.Quantity }}</div></td>
+              <td class="table-data-style"><div *ngIf="item.Quantity!== -1">{{ item.UnitPrice }}</div></td>
+              <td class="table-data-style">{{countTotal(item.Quantity, item.UnitPrice)}}</td>
+            </tr>
+          </ng-container>
+          
+          <tr>
+            <td class="table-data-style"></td>
+            <td class="table-data-style text-center">
+              <strong>Total Excl. Tax</strong>
+            </td>
+            <td class="table-data-style" colSpan=2></td>
+            <td class="table-data-style">
+              {{countTotalexTax(poOrderDetails.Items)}}
+            </td>
+          </tr>
+
+          <!-- Last 4 rows -->
+          <tr *ngIf="poOrderDetails">
+            <td
+              class="table-data-style text-upper"
+              colSpan=2
+              rowSpan=6
+            >
+              Note
+            </td>
+            <td class="table-data-style" colSpan=2>
+              Discount
+            </td>
+            <td class="table-data-style" *ngIf="poOrderDetails">RS {{poOrderDetails.Discount}}</td>
+          </tr>
+          <tr *ngIf="poOrderDetails">
+            <td class="table-data-style" colSpan=2>
+              Othe Costs
+            </td>
+            <td class="table-data-style" *ngIf="poOrderDetails">RS {{poOrderDetails.OtherCosts}}</td>
+          </tr>
+          <tr>
+            <td colSpan=2 class="table-data-style">
+              CGST
+            </td>
+            <td class="table-data-style" *ngIf="poOrderDetails">{{poOrderDetails.TaxDetails['CGST']}}%</td>
+          </tr>
+          <tr>
+            <td colSpan=2 class="table-data-style">
+              SGST
+            </td>
+            <td class="table-data-style">{{poOrderDetails.TaxDetails['SGST']}}%</td>
+          </tr>
+          <tr>
+            <td colSpan=2 class="table-data-style">
+              Total
+            </td>
+            <td class="table-data-style">
+             {{countSubTotal(
+                poOrderDetails.Discount,
+                poOrderDetails.TaxDetails['CGST'],
+                poOrderDetails.TaxDetails['CGST'],
+                poOrderDetails.OtherCosts
+              )}}
+            </td>
+          </tr>
+          <tr>
+            <td colSpan=3  class="table-data-style">
+              Authorized signature
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    
+  </div>
+  

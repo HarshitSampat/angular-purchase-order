@@ -1,0 +1,27 @@
+.table-container {
+    float: right;
+  }
+  
+  .table-bordered {
+    border-collapse: collapse; /* Ensure borders collapse for all elements */
+    border: 2px solid #333; /* Dark border color for the outer table border */
+  }
+  
+  /* Dark border for table headers */
+  .table-bordered th {
+    border: 2px solid #333; /* Dark border color for table headers */
+    padding: 8px; /* Add padding to separate cell content from borders (adjust as needed) */
+  }
+  
+  /* Dark border for table cells */
+  .table-bordered td {
+    border: 2px solid #333; /* Dark border color for table cells */
+    padding: 8px; /* Add padding to separate cell content from borders (adjust as needed) */
+  }
+  
+  .table-data-style{
+    height: 50px;
+    border: 2px solid #000;
+    padding: 8px;
+    text-align: left;
+  }

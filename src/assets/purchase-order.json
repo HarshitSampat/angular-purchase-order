@@ -1,0 +1,90 @@
+{
+    "Date": "08-08-2023",
+    "PONumber": "RSSPL_67_A_08082023",
+    "Vendor": {
+
+        "Name": "Super System",
+    
+        "Address": {
+    
+          "Line1": "Address line 1",
+    
+          "Line2": "Address line 2",
+    
+          "CityState": "city,state"
+    
+        },
+    
+        "Contact": {
+    
+          "Name": "contactname",
+    
+          "Number": "number",
+    
+          "Email": "EmailId",
+    
+          "Website": "Website"
+    
+        },
+    
+        "GSTNo": "24AKKPP6483C1Z0",
+    
+        "PANNo": "AKKPP6483C"
+    
+      },
+    
+      "ShipTo": {
+    
+        "Name": "Super System",
+    
+        "Address": {
+    
+          "Line1": "Address line 1",
+    
+          "Line2": "Address line 2",
+    
+          "CityState": "city,state"
+    
+        },
+    
+        "Contact": {
+    
+          "Name": "contactname",
+    
+          "Number": "number",
+    
+          "Email": "EmailId",
+    
+          "Website": "Website"
+    
+        },
+    
+        "GSTNo": "24AKKPP6483C1Z0",
+    
+        "PANNo": "AKKPP6483C"
+    
+      },
+      "DeliveryMethod": "On Premises",
+
+      "PaymentTerms": "30 Days",
+    
+      "DeliveryDate": "N/A",
+    
+      "AgainstQuoteNo": "",
+      "Items": [
+        {
+            "SrNo": 1,
+            "ProductName": "Projection Screen 100\" (16:9 Motorized Screen With SyncMotor)",
+            "Quantity": 1,
+            "UnitPrice": 9000.00
+           
+      }
+    ],
+      "Note": "",
+    "Discount": 50,
+    "OtherCosts": 0.00,
+    "TaxDetails": {
+      "CGST": 9,
+      "SGST": 9
+    }
+  }
